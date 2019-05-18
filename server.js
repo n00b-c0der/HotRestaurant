@@ -1,40 +1,18 @@
-require('dotenv').config();
-let express = require('express');
-let app = express();
-let config = require('./config')
+var express = require("express");
+var bodyParser = require("body-parser");
 
-let mysql = require('mysql')
+var app = express();
+
+var PORT = process.env.PORT || 8080;
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 
-let connection = mysql.createConnection({
-    host: config.db_host,
-    user: config.db_user,
-    password: config.db_password,
-    port: config.db_port,
-    database: config.db_name
-})
+require("./routes/apiRoutes")(app);
+require("./routes/htmlRoutes")(app);
 
-function data() {
-    connection.query('select * from reservations', (err, data) => {
-        if (err) throw err;
-        if (data.length = 0) {
-            console.log('empty');
 
-        } else {
-            console.log(data);
-        }
-
-    })
-}
-data()
-
-PORT = process.env.PORT || 3030;
-
-app.get('/', (req, res) => {
-
-})
-
-app.listen(PORT, (req, res) => {
-    console.log(`listening on ${PORT}`);
-
-})
+app.listen(PORT, function() {
+  console.log("App listening on PORT: " + PORT);
+});
