@@ -40,15 +40,15 @@ var guests = [
 
 // Routes
 app.get("/", function(req, res) {
-  res.sendFile(path.join(__dirname, "Public", "home.html"));
+    res.sendFile('public/home.html' , { root : __dirname});
 });
 
 app.get("/reserve", function(req, res) {
-  res.sendFile(path.join(__dirname, "Public", "reserve.html"));
+    res.sendFile('public/reserve.html' , { root : __dirname});
 });
 
 app.get("/tables", function(req, res) {
-    res.sendFile(path.join(__dirname, "Public", "tables.html"));
+    res.sendFile('public/tables.html' , { root : __dirname});
   });
 
 
