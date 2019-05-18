@@ -1,19 +1,32 @@
-// Dependencies
-// =============================================================
-var express = require("express");
-var path = require("path");
+require('dotenv').config();
+let express = require('express');
+let app = express();
+let config = require('./config');
+let mysql = require('mysql');
+let PORT = 3030;
 
-// Sets up the Express App
-// =============================================================
-var app = express();
-var PORT = 3000;
+let connection = mysql.createConnection({
+    host: config.db_host,
+    user: config.db_user,
+    password: config.db_password,
+    port: config.db_port,
+    database: config.db_name
+})
 
-// Sets up the Express app to handle data parsing
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+function data() {
+    connection.query('select * from reservations', (err, data) => {
+        if (err) throw err;
+        if (data.length = 0) {
+            console.log('empty');
 
-// Star Wars Characters (DATA)
-// =============================================================
+        } else {
+            console.log(data);
+        }
+
+    })
+}
+data()
+
 var guests = [
   {
     name: "Yoda",
@@ -23,24 +36,9 @@ var guests = [
     date: "6/18/19",
     guests: 4,
   },
-
-  {
-    name: "Yoda",
-    phone: "770-770-7707",
-    email: "email@email.com",
-    id: "master",
-    date: "6/18/19",
-    guests: 4,
-  },
-
-  
-
 ];
 
 // Routes
-// =============================================================
-
-// Basic route that sends the user first to the AJAX Page
 app.get("/", function(req, res) {
   res.sendFile(path.join(__dirname, "Public", "home.html"));
 });
