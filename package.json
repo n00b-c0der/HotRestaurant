@@ -1,0 +1,24 @@
+{
+  "name": "HotRestaurant",
+  "version": "1.0.0",
+  "description": "gtcbc W12 in class activity",
+  "main": "config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/n00b-c0der/HotRestaurant.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/n00b-c0der/HotRestaurant/issues"
+  },
+  "homepage": "https://github.com/n00b-c0der/HotRestaurant#readme",
+  "dependencies": {
+    "express": "^4.17.0",
+    "nodemon": "^1.19.0"
+  }
+}

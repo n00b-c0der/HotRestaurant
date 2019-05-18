@@ -33,15 +33,7 @@ var guests = [
     guests: 4,
   },
 
-  {
-    name: "Yoda",
-    phone: "770-770-7707",
-    email: "email@email.com",
-    id: "master",
-    date: "6/18/19",
-    guests: 4,
-  },
-
+  
 
 ];
 
@@ -50,15 +42,15 @@ var guests = [
 
 // Basic route that sends the user first to the AJAX Page
 app.get("/", function(req, res) {
-  res.sendFile(path.join(__dirname, "home.html"));
+  res.sendFile(path.join(__dirname, "Public", "home.html"));
 });
 
 app.get("/reserve", function(req, res) {
-  res.sendFile(path.join(__dirname, "reserve.html"));
+  res.sendFile(path.join(__dirname, "Public", "reserve.html"));
 });
 
 app.get("/tables", function(req, res) {
-    res.sendFile(path.join(__dirname, "tables.html"));
+    res.sendFile(path.join(__dirname, "Public", "tables.html"));
   });
 
 
