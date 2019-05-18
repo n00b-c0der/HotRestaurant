@@ -16,26 +16,33 @@ app.use(express.json());
 // =============================================================
 var guests = [
   {
-    routeName: "yoda",
     name: "Yoda",
-    role: "Jedi Master",
-    age: 900,
-    forcePoints: 2000
+    phone: "770-770-7707",
+    email: "email@email.com",
+    id: "master",
+    date: "6/18/19",
+    guests: 4,
   },
+
   {
-    routeName: "darthmaul",
-    name: "Darth Maul",
-    role: "Sith Lord",
-    age: 200,
-    forcePoints: 1200
+    name: "Yoda",
+    phone: "770-770-7707",
+    email: "email@email.com",
+    id: "master",
+    date: "6/18/19",
+    guests: 4,
   },
+
   {
-    routeName: "obiwankenobi",
-    name: "Obi Wan Kenobi",
-    role: "Jedi Master",
-    age: 55,
-    forcePoints: 1350
-  }
+    name: "Yoda",
+    phone: "770-770-7707",
+    email: "email@email.com",
+    id: "master",
+    date: "6/18/19",
+    guests: 4,
+  },
+
+
 ];
 
 // Routes
@@ -43,16 +50,20 @@ var guests = [
 
 // Basic route that sends the user first to the AJAX Page
 app.get("/", function(req, res) {
-  res.sendFile(path.join(__dirname, "view.html"));
+  res.sendFile(path.join(__dirname, "home.html"));
 });
 
-app.get("/waitlist", function(req, res) {
-  res.sendFile(path.join(__dirname, "waitlist.html"));
+app.get("/reserve", function(req, res) {
+  res.sendFile(path.join(__dirname, "reserve.html"));
 });
+
+app.get("/tables", function(req, res) {
+    res.sendFile(path.join(__dirname, "tables.html"));
+  });
 
 
 // Create New Characters - takes in JSON input
-app.post("/api/waitlist", function(req, res) {
+app.post("/api/reserve", function(req, res) {
   // req.body hosts is equal to the JSON post sent from the user
   // This works because of our body parsing middleware
   var newguest = req.body;
