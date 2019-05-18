@@ -6,8 +6,9 @@
 
     <link
       rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-    />
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+      <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   </head>
   <body>
     <div class="container">
@@ -22,12 +23,11 @@
         <br />
 
         <div class="text-center">
-          <a href="./tables.html"
-            ><button type="button" class="btn btn-lg btn-primary">
+          <button type="button" class="btn btn-lg btn-primary" onclick="window.location.href = 'public/tables';">
               <span class="glyphicon glyphicon-list-alt"></span> View Tables
             </button></a
           >
-          <a href="./reserve.html"
+          <a href="public/reserve"
             ><button type="button" class="btn btn-lg btn-danger">
               <span class="glyphicon glyphicon-credit-card"></span> Make
               Reservation

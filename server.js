@@ -4,28 +4,32 @@ let app = express();
 let config = require('./config');
 let mysql = require('mysql');
 let PORT = 3030;
+var path = require("path");
 
-let connection = mysql.createConnection({
-    host: config.db_host,
-    user: config.db_user,
-    password: config.db_password,
-    port: config.db_port,
-    database: config.db_name
-})
+// let connection = mysql.createConnection({
+//     host: config.db_host,
+//     user: config.db_user,
+//     password: config.db_password,
+//     port: config.db_port,
+//     database: config.db_name
+// })
 
-function data() {
-    connection.query('select * from reservations', (err, data) => {
-        if (err) throw err;
-        if (data.length = 0) {
-            console.log('empty');
+// function data() {
+//     connection.query('select * from reservations', (err, data) => {
+//         if (err) throw err;
+//         if (data.length = 0) {
+//             console.log('empty');
 
-        } else {
-            console.log(data);
-        }
+//         } else {
+//             console.log(data);
+//         }
 
-    })
-}
-data()
+//     })
+
+//     connection.end();
+// }
+
+// data()
 
 var guests = [
   {
@@ -39,17 +43,24 @@ var guests = [
 ];
 
 // Routes
+// app.get("/", function(req, res) {
+//     res.sendFile('Public/home.html' , { root : __dirname});
+// });
+
+// app.get("api/reserve", function(req, res) {
+//     res.sendFile('Public/reserve.html' , { root : __dirname});
+// });
 app.get("/", function(req, res) {
     res.sendFile('public/home.html' , { root : __dirname});
 });
 
-app.get("/reserve", function(req, res) {
+app.get("/public/reserve", function(req, res) {
     res.sendFile('public/reserve.html' , { root : __dirname});
 });
 
-app.get("/tables", function(req, res) {
-    res.sendFile('public/tables.html' , { root : __dirname});
-  });
+app.get("/public/tables", function(req, res) {
+    res.sendFile('public/tables.html',  { root : __dirname});
+});
 
 
 // Create New Characters - takes in JSON input
