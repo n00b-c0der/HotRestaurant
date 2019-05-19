@@ -1,40 +1,60 @@
-require('dotenv').config();
-let express = require('express');
-let app = express();
-let config = require('./config')
+require("dotenv").config();
+let config = require("./config");
 
+let express = require("express");
+let app = express();
+let PORT = process.env.SERVER_PORT || 3030;
+let customerReservations = require('./reservations')
+let path = require('path')
 let mysql = require('mysql')
 
-
-let connection = mysql.createConnection({
+var connection = mysql.createConnection({
     host: config.db_host,
     user: config.db_user,
     password: config.db_password,
-    port: config.db_port,
-    database: config.db_name
-})
-
-function data() {
-    connection.query('select * from reservations', (err, data) => {
-        if (err) throw err;
-        if (data.length = 0) {
-            console.log('empty');
-
-        } else {
-            console.log(data);
-        }
-
-    })
-}
-data()
-
-PORT = process.env.PORT || 3030;
-
-app.get('/', (req, res) => {
+    database: config.db_name,
+    port: config.db_port
 
 })
 
-app.listen(PORT, (req, res) => {
-    console.log(`listening on ${PORT}`);
+// connection.query(
+//     connection.query('SELECT * FROM reservations', function (err, rows) {
+//         if (err) throw err
+
+//         console.log('The solution is: ', rows)
+//     })
+// )
+
+app.use(express.urlencoded({
+    extended: true
+}));
+app.use(express.json());
+
+
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'home.html'))
 
 })
+app.get('/tables', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'tables.html'))
+})
+
+app.get('/reserve', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'reserve.html'))
+})
+
+
+app.post('/api/table', (req, res) => {
+    console.log(req.body);
+
+    let newCustomerReservations = req.body;
+
+    customerReservations.push(newCustomerReservations)
+
+    res.json(customerReservations)
+
+})
+
+app.listen(PORT, () => {
+    console.log("listening on " + PORT);
+});
